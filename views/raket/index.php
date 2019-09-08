@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\RaketSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Rakets';
+$this->title = 'List Racquet';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="raket-index">
@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Raket', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('New Racquet', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -29,9 +29,9 @@ $this->params['breadcrumbs'][] = $this->title;
             //'ID',
             'BRAND',
             'NAME',
-            //'CATEGORY',
-            'WEIGHT',
-            'GRIP',
+            'CATEGORY',
+            //'WEIGHT',
+            //'GRIP',
             'MAX_TENSION',
             'PRICE',
 

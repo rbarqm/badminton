@@ -15,6 +15,8 @@ use Yii;
  * @property string $GRIP Grip
  * @property int $MAX_TENSION Tarikan Maksimum
  * @property int $PRICE Harga
+ *
+ * @property BrandRaket $bRAND
  */
 class Raket extends \yii\db\ActiveRecord
 {
@@ -36,6 +38,7 @@ class Raket extends \yii\db\ActiveRecord
             [['MAX_TENSION', 'PRICE'], 'integer'],
             [['BRAND', 'NAME'], 'string', 'max' => 50],
             [['NAME', 'CATEGORY', 'WEIGHT', 'GRIP', 'MAX_TENSION', 'BRAND'], 'unique', 'targetAttribute' => ['NAME', 'CATEGORY', 'WEIGHT', 'GRIP', 'MAX_TENSION', 'BRAND']],
+            [['BRAND'], 'exist', 'skipOnError' => true, 'targetClass' => BrandRaket::className(), 'targetAttribute' => ['BRAND' => 'BRAND']],
         ];
     }
 
@@ -51,8 +54,16 @@ class Raket extends \yii\db\ActiveRecord
             'CATEGORY' => 'Kategori',
             'WEIGHT' => 'Berat',
             'GRIP' => 'Grip',
-            'MAX_TENSION' => 'Tarikan Maksimum (lbs)',
+            'MAX_TENSION' => 'Tarikan Maksimum',
             'PRICE' => 'Harga',
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getBRAND()
+    {
+        return $this->hasOne(BrandRaket::className(), ['BRAND' => 'BRAND']);
     }
 }
