@@ -5,8 +5,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Senar */
 
-$this->title = 'Create Senar';
-$this->params['breadcrumbs'][] = ['label' => 'Senars', 'url' => ['index']];
+$this->title = 'New String';
+$this->params['breadcrumbs'][] = ['label' => 'String', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="senar-create">

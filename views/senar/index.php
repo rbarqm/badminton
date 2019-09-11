@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\SenarSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Senars';
+$this->title = 'Racquet Strings';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="senar-index">
@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Senar', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('New String', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>

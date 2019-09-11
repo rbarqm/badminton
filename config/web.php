@@ -49,8 +49,20 @@ $config = [
             'showScriptName' => false,
             'rules' => [
             ],
-        ],        
+        ],
+		
+		'formatter' => [
+			'class' => 'yii\i18n\formatter',
+			'thousandSeparator' => ',',
+			'decimalSeparator' => '.',
+			'currencyCode' => 'Rp'
+		],	
     ],
+	'modules' => [
+		'gridview' => [
+			'class' => 'kartik\grid\Module',
+		],
+	],
     'params' => $params,
 ];
 
