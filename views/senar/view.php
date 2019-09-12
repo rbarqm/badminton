@@ -6,8 +6,8 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\Senar */
 
-$this->title = $model->STRING_NAME;
-$this->params['breadcrumbs'][] = ['label' => 'Senars', 'url' => ['index']];
+$this->title = $model->STRING_BRAND." - ".$model->STRING_NAME;
+$this->params['breadcrumbs'][] = ['label' => 'Strings', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
@@ -29,7 +29,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            //'ID',
+            'ID',
+            'STRING_BRAND',
             'STRING_NAME',
             'STRING_CATEGORY',
             'STRING_FEELING',

@@ -6,7 +6,8 @@ $db = require __DIR__ . '/db.php';
 $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log'],
+    //'defaultRoute' => 'site/index',
+	'bootstrap' => ['log'],	
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
@@ -15,6 +16,10 @@ $config = [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'YLlLJuZm1VuibSg0pX-cUymcF0t1lIbh',
+			'enableCsrfValidation' => false,
+			'csrfCookie' => [
+                'domain' => 'localhost',
+            ],
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
@@ -45,9 +50,12 @@ $config = [
         'db' => $db,
         
         'urlManager' => [
+			'class' => 'yii\web\UrlManager',
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+				//'<alias:\w+>' => 'sites/<alias>',
+				//'<controller:\w+>' => '/<controller>',
             ],
         ],
 		

@@ -18,7 +18,7 @@ class SenarSearch extends Senar
     {
         return [
             [['ID', 'POINT_REPULSION_POWER', 'POINT_DURABILITY', 'POINT_HITTING_SOUND', 'POINT_SHOCK_ABSORPTION', 'POINT_CONTROL', 'AVERAGE_PRICE'], 'integer'],
-            [['STRING_NAME', 'STRING_CATEGORY', 'STRING_FEELING'], 'safe'],
+            [['STRING_BRAND', 'STRING_NAME', 'STRING_CATEGORY', 'STRING_FEELING'], 'safe'],
             [['STRING_DIAMETER'], 'number'],
         ];
     }
@@ -69,7 +69,8 @@ class SenarSearch extends Senar
             'AVERAGE_PRICE' => $this->AVERAGE_PRICE,
         ]);
 
-        $query->andFilterWhere(['like', 'STRING_NAME', $this->STRING_NAME])
+        $query->andFilterWhere(['like', 'STRING_BRAND', $this->STRING_BRAND])
+            ->andFilterWhere(['like', 'STRING_NAME', $this->STRING_NAME])
             ->andFilterWhere(['like', 'STRING_CATEGORY', $this->STRING_CATEGORY])
             ->andFilterWhere(['like', 'STRING_FEELING', $this->STRING_FEELING]);
 

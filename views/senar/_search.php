@@ -15,7 +15,9 @@ use yii\widgets\ActiveForm;
         'method' => 'get',
     ]); ?>
 
-    <?= $form->field($model, 'ID') ?>
+    <?= //$form->field($model, 'ID') ?>
+
+    <?= $form->field($model, 'STRING_BRAND') ?>
 
     <?= $form->field($model, 'STRING_NAME') ?>
 
@@ -23,7 +25,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'STRING_FEELING') ?>
 
-    <?= $form->field($model, 'STRING_DIAMETER') ?>
+    <?php // echo $form->field($model, 'STRING_DIAMETER') ?>
 
     <?php // echo $form->field($model, 'POINT_REPULSION_POWER') ?>
 
@@ -35,7 +37,7 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'POINT_CONTROL') ?>
 
-    <?php // echo $form->field($model, 'AVERAGE_PRICE') ?>
+    <?php echo $form->field($model, 'AVERAGE_PRICE') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

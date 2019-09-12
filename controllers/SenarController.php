@@ -5,9 +5,12 @@ namespace app\controllers;
 use Yii;
 use app\models\Senar;
 use app\models\SenarSearch;
+use app\models\BrandSenar;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\helpers\Json;
+
 
 /**
  * SenarController implements the CRUD actions for Senar model.
@@ -37,8 +40,8 @@ class SenarController extends Controller
     {
         $searchModel = new SenarSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-        return $this->render('index', [
+		
+		return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
@@ -64,14 +67,17 @@ class SenarController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Senar();
-
+        $merek = $this->actionBrand();
+		
+		$model = new Senar();
+		
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->ID]);
         }
 
         return $this->render('create', [
             'model' => $model,
+			'merek' => $merek,
         ]);
     }
 
@@ -85,13 +91,14 @@ class SenarController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-
+		$merek = $this->actionBrand();
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->ID]);
         }
 
         return $this->render('update', [
             'model' => $model,
+			'merek' => $merek,
         ]);
     }
 
@@ -124,4 +131,20 @@ class SenarController extends Controller
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
+	
+	public function actionBrand(){
+		$merekSenar = [];
+		
+		$tabelSenar = BrandSenar::find()
+		->select('BRAND')
+		->each();
+		
+		foreach($tabelSenar as $row){
+			array_push($merekSenar,[
+				'merek' => $row->BRAND
+			]);			
+		}
+		
+		return Json::encode($merekSenar);
+	}
 }

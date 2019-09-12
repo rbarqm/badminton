@@ -11,18 +11,18 @@ use yii\filters\VerbFilter;
 use kartik\grid\GridView;
 use yii\data\ArrayDataProvider;
 use yii\helpers\Json;
+use yii\helpers\Html;
+use yii\helpers\Url;
 
 class CompareController extends \yii\web\Controller
 {
     public function actionIndex()
     {
 		$dataProvider = $this->actionGrade();
-		
-		$data = Json::decode($dataProvider, true);
-		//echo $data;die();
+		$dataProvider = Json::decode($dataProvider, true);
 		
 		$dataProvider = new ArrayDataProvider([
-			'allModels' => $data,
+			'allModels' => $dataProvider,
 			'pagination' => [
 				'pageSize' => 10,
 			],
@@ -37,26 +37,33 @@ class CompareController extends \yii\web\Controller
 				],
 				'defaultOrder' => [
 					'grade' => SORT_DESC,
-					'price' => SORT_ASC,
-				]
+					//'price' => SORT_ASC,
+				],
 			],
 		]);
 		
 		$gridColumns = [
 			[
-				'class' => 'yii\grid\SerialColumn',
+				'class' => 'yii\grid\SerialColumn',				
 			],
 			[
 				'attribute' => 'name',
 				'label' => 'Nama Senar',
 				'format' => "raw",
 				'headerOptions' => [
-					'style' => 'background: green;text-align:center;font-weight: bold;',
+					'style' => 'color: white;background: green;text-align:center;font-weight: bold;',
 				],
-				'contentOptions' => ['style' => 'text-align:left'],
+				'contentOptions' => [
+					'style' => 'text-align:left'
+				],
 				'sortLinkOptions' => [
 					'style' => 'color: white;',
-				],							
+				],
+				'value' => function($data) {
+					$idid = $data['id_data'];
+					$nama = $data['name'];
+					return Html::a($nama, Url::to(['compare/view?id='.$idid]),['id' => 'senar-detail']);
+				}
 			],
 			[
 				'attribute' => 'feel',
@@ -143,10 +150,10 @@ class CompareController extends \yii\web\Controller
 						return "F";
 					}
 				},
-			],			
+			],
 			[
 				'attribute' => 'price',
-				'label' => 'Harga (dalam Rupiah)',
+				'label' => 'Harga',
 				'format' => "raw",
 				'headerOptions' => [
 					'style' => 'background: green;text-align:center;font-weight: bold;',
@@ -155,10 +162,14 @@ class CompareController extends \yii\web\Controller
 				'sortLinkOptions' => [
 					'style' => 'color: white;',
 				],
-				//'format' => 'Currency',
-				//'attribute' => 'amount',
+				'value' => function($data){
+					$harga = $data['price'];
+					$res = "Rp.".number_format($harga,0,",",".").",-";
+					return $res;
+				}
 			],
 		];
+		
         return $this->render('index',[
 			'dataProvider' => $dataProvider,
 			'gridColumns' => $gridColumns,
@@ -176,6 +187,7 @@ class CompareController extends \yii\web\Controller
 		$data=[];
 		
 		foreach($tabel1 as $row){
+			$id_data = $row['ID'] ;
 			$nama = $row['STRING_NAME'];
 			$feel = $row['STRING_FEELING'];
 			$kategori = $row['STRING_CATEGORY'];
@@ -193,9 +205,9 @@ class CompareController extends \yii\web\Controller
 			$redaman = $shoAbs*($bobot_ShockAbs/10);
 			$kontrol = $control*($bobot_Control/10);
 			$nilai_tot = $tolakan+$ketahanan+$suara+$redaman+$kontrol;
-			//$data = [$nama,$feel,$kategori,$diameter,$nilai_tot,$harga];
 			
 			array_push($data, [
+				'id_data' => $id_data,
                 'name' => $nama,
                 'feel' => $feel,
 				'category' => $kategori,
@@ -204,7 +216,22 @@ class CompareController extends \yii\web\Controller
 				'price' => $harga
             ]);		
 		}
-		return json_encode($data);
+		return Json::encode($data);
 	}
+	
+	public function actionView($id)
+    {
+        return $this->render('view', [
+            'model' => $this->findModel($id),
+        ]);
+    }
+	
+	protected function findModel($id)
+    {
+        if (($model = Senar::findOne($id)) !== null) {
+            return $model;
+        }
 
+        throw new NotFoundHttpException('The requested page does not exist.');
+    }
 }
