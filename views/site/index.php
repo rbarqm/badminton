@@ -1,5 +1,6 @@
 <?php
-
+use yii\helpers\Html;
+use yii\helpers\Url;
 /* @var $this yii\web\View */
 
 $this->title = 'Bulutangkis';
@@ -7,45 +8,56 @@ $this->title = 'Bulutangkis';
 <div class="site-index">
 
     <div class="jumbotron">
-        <h1>Congratulations!</h1>
-
-        <p class="lead">You have successfully created your Yii-powered application.</p>
-
-        <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
+        <h1>Welcome!</h1>
     </div>
 
     <div class="body-content">
 
         <div class="row">
             <div class="col-lg-4">
-                <h2>Heading</h2>
+                <h2>Senar</h2>
 
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
+                <p>List untuk melihat jenis-jenis senar dari berbagai merek</p>
 
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/doc/">Yii Documentation &raquo;</a></p>
+				<?= 
+					Html::button('Senar &raquo;', 
+						[
+							'id' => 'btn-senar',
+							'class' => 'btn btn-default btn-sm', 
+							'onclick' => 'window.location.href='."'".Url::to('@web/senar/index')."'",
+						]
+					); 
+				?>
             </div>
             <div class="col-lg-4">
-                <h2>Heading</h2>
+                <h2>Raket</h2>
 
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
+                <p>Jenis-jenis senar dari berbagai merek terkenal dunia dan buatan lokal Indonesia</p>
 
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/forum/">Yii Forum &raquo;</a></p>
+                <?= 
+					Html::button('Raket &raquo;', 
+						[
+							'id' => 'btn-raket',
+							'class' => 'btn btn-default btn-sm', 
+							'onclick' => 'window.location.href='."'".Url::to('@web/raket/index')."'",
+						]
+					); 
+				?>
             </div>
             <div class="col-lg-4">
-                <h2>Heading</h2>
+                <h2>Komparasi Senar</h2>
 
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
+                <p>Lihat senar terbaik untukmu bermain</p>
 
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/extensions/">Yii Extensions &raquo;</a></p>
+                <?= 
+					Html::button('Komparasi &raquo;', 
+						[
+							'id' => 'btn-compare',
+							'class' => 'btn btn-default btn-sm', 
+							'onclick' => 'window.location.href='."'".Url::to('@web/compare/index')."'",
+						]
+					); 
+				?>
             </div>
         </div>
 

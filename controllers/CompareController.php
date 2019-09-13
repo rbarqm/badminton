@@ -177,6 +177,7 @@ class CompareController extends \yii\web\Controller
     }
 	
 	public function actionGrade(){		
+		
 		$tabel1 = Senar::find()->all();
 		
 		$bobot_Repulsion = 30;
@@ -213,16 +214,75 @@ class CompareController extends \yii\web\Controller
 				'category' => $kategori,
 				'diameter' => $diameter,
 				'grade' => $nilai_tot,
-				'price' => $harga
+				'price' => $harga,
+				'tolakan' => $tolakan,
+				'ketahanan' => $ketahanan,
+				'suara' => $suara,
+				'redaman' => $redaman,
+				'kontrol' => $kontrol,
             ]);		
 		}
 		return Json::encode($data);
 	}
-	
+		
+	/*public function actionGradeDetail($id){		
+		
+		$tabel1 = Senar::findOne($id);
+		
+		$bobot_Repulsion = 30;
+		$bobot_Durability = 20;
+		$bobot_HitSound = 5;
+		$bobot_ShockAbs = 15;
+		$bobot_Control = 30;
+		$data=[];
+		
+		$id_data = $tabel1['ID'] ;
+		$merek = $tabel1['STRING_BRAND'];
+		$nama = $tabel1['STRING_NAME'];
+		$feel = $tabel1['STRING_FEELING'];
+		$kategori = $tabel1['STRING_CATEGORY'];
+		$diameter = $tabel1['STRING_DIAMETER'];
+		$repPwr = $tabel1['POINT_REPULSION_POWER'];
+		$durable = $tabel1['POINT_DURABILITY'];
+		$hitSou = $tabel1['POINT_HITTING_SOUND'];
+		$shoAbs = $tabel1['POINT_SHOCK_ABSORPTION'];
+		$control = $tabel1['POINT_CONTROL'];
+		$harga = $tabel1['AVERAGE_PRICE'];
+		
+		$tolakan = $repPwr*($bobot_Repulsion/10);
+		$ketahanan = $durable*($bobot_Durability/10);
+		$suara = $hitSou*($bobot_HitSound/10);
+		$redaman = $shoAbs*($bobot_ShockAbs/10);
+		$kontrol = $control*($bobot_Control/10);
+		$nilai_tot = $tolakan+$ketahanan+$suara+$redaman+$kontrol;
+		
+		array_push($data, [
+			'ID' => $id_data,
+			'STRING_BRAND' => $merek,
+			'STRING_NAME' => $nama,
+			'STRING_FEELING' => $feel,
+			'STRING_CATEGORY' => $kategori,
+			'STRING_DIAMETER' => $diameter,
+			'grade' => $nilai_tot,
+			'price' => $harga,
+			'tolakan' => $tolakan,
+			'ketahanan' => $ketahanan,
+			'suara' => $suara,
+			'redaman' => $redaman,
+			'kontrol' => $kontrol,
+		]);
+		
+		return Json::encode($data);
+	}*/
 	public function actionView($id)
     {
-        return $this->render('view', [
+		//$detail = new ArrayDataProvider([
+		//	'allModels' => $this->actionGradeDetail($id),
+		//]);
+		
+		return $this->render('view', [
             'model' => $this->findModel($id),
+			//'detail' => $detail,
         ]);
     }
 	

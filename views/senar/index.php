@@ -8,18 +8,16 @@ use yii\grid\GridView;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Racquet Strings';
-$this->params['breadcrumbs'][] = $this->title;
+//$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="senar-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>
-        <?= Html::a('New String', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
-
+	<h1><?= Html::encode($this->title) ?></h1>
+	
+	<?= Html::a('New String', ['create'], ['class' => 'btn btn-success']) ?>
+	
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
+	
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -42,6 +40,4 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
-
-
 </div>
