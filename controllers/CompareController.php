@@ -99,7 +99,7 @@ class CompareController extends \yii\web\Controller
 				'contentOptions' => ['style' => 'text-align:right'],
 				'sortLinkOptions' => [
 					'style' => 'color: white;',
-				],							
+				],				
 			],
 			/*[
 				'attribute' => 'grade',

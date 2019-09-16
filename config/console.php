@@ -25,6 +25,13 @@ $config = [
                 ],
             ],
         ],
+		return [
+        'id' => 'app-console',
+        'modules' => [
+            'user' => [
+                'class' => 'dektrium\user\Module',
+            ],
+        ],
         'db' => $db,
     ],
     'params' => $params,
@@ -43,6 +50,7 @@ if (YII_ENV_DEV) {
     $config['modules']['gii'] = [
         'class' => 'yii\gii\Module',
     ];
+	
 }
 
 return $config;

@@ -64,11 +64,19 @@ $config = [
 			'thousandSeparator' => ',',
 			'decimalSeparator' => '.',
 			'currencyCode' => 'Rp'
-		],	
+		],
+		
+		/*'user' => [
+			'class' => 'app\components\User',
+			'identityClass' => 'dektrium\user\models\User',
+		],*/
     ],
 	'modules' => [
 		'gridview' => [
 			'class' => 'kartik\grid\Module',
+		],
+		'user' => [
+			'class' => 'dektrium\user\Module',
 		],
 	],
     'params' => $params,

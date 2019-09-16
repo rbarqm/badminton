@@ -41,11 +41,11 @@ AppAsset::register($this);
         'items' => [
             ['label' => 'Home', 'url' => ['/site/index']],
             //['label' => 'About', 'url' => ['/site/about']],
-			['label' => 'Senar', 'url' => ['/senar']],
-			['label' => 'Raket', 'url' => ['/raket']],
-			['label' => 'Komparasi', 'url' => ['/compare']],
+			['label' => 'Senar', 'url' => ['/senar'], 'visible' => !Yii::$app->user->isGuest],
+			['label' => 'Raket', 'url' => ['/raket'], 'visible' => !Yii::$app->user->isGuest],
+			['label' => 'Komparasi', 'url' => ['/compare'], 'visible' => !Yii::$app->user->isGuest],
             //['label' => 'Contact', 'url' => ['/site/contact']],
-            Yii::$app->user->isGuest ? (
+            /*Yii::$app->user->isGuest ? (
                 ['label' => 'Login', 'url' => ['/site/login']]
             ) : (
                 '<li>'
@@ -56,7 +56,13 @@ AppAsset::register($this);
                 )
                 . Html::endForm()
                 . '</li>'
-            )
+            ),*/
+			Yii::$app->user->isGuest ?
+				['label' => 'Sign in', 'url' => ['/user/security/login']] :
+				['label' => 'Sign out (' . Yii::$app->user->identity->username . ')',
+					'url' => ['/user/security/logout'],
+					'linkOptions' => ['data-method' => 'post']],
+				['label' => 'Register', 'url' => ['/user/registration/register'], 'visible' => Yii::$app->user->isGuest]
         ],
     ]);
     NavBar::end();
